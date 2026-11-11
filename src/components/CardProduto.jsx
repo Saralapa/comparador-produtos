@@ -7,6 +7,7 @@ function CardProduto({ produto }) {
       <p className="preco">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
       <ul>
         <li>Tela: {produto.tela}</li>
+        <li>Processador: {produto.processador}</li>
         <li>RAM: {produto.ram}</li>
         <li>Armazenamento: {produto.armazenamento}</li>
         <li>Nota: {produto.nota}</li>
