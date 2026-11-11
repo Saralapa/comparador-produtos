@@ -1,3 +1,6 @@
+import produtos from './data/produtos.json'
+import ListaProdutos from './components/ListaProdutos'
+
 // componente principal do site
 function App() {
   return (
@@ -8,8 +11,7 @@ function App() {
       </header>
 
       <main className="conteudo">
-        {/* aqui vai entrar a lista de produtos depois */}
-        <p>Em construção...</p>
+        <ListaProdutos produtos={produtos} />
       </main>
 
       <footer className="rodape">

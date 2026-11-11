@@ -41,3 +41,46 @@ body {
   padding: 10px;
   font-size: 14px;
 }
+
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+}
+
+.card ul {
+  padding-left: 18px;
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.card-imagem {
+  height: 100px;
+  background-color: #d6e4f5;
+  color: #1e5aa8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.preco {
+  color: #0a7a2f;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+}
