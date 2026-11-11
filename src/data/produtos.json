@@ -1,0 +1,18 @@
+[
+  { "id": 1, "nome": "Celular X12", "categoria": "celular", "preco": 1299.9, "tela": "6.1 polegadas", "ram": "4 GB", "armazenamento": "64 GB", "processador": "Octa-core 2.0 GHz", "nota": 4.1 },
+  { "id": 2, "nome": "Celular X12 Pro", "categoria": "celular", "preco": 1899.0, "tela": "6.5 polegadas", "ram": "6 GB", "armazenamento": "128 GB", "processador": "Octa-core 2.4 GHz", "nota": 4.4 },
+  { "id": 3, "nome": "Celular Nova 5", "categoria": "celular", "preco": 899.0, "tela": "6.0 polegadas", "ram": "3 GB", "armazenamento": "32 GB", "processador": "Quad-core 1.8 GHz", "nota": 3.7 },
+  { "id": 4, "nome": "Celular Nova 5 Plus", "categoria": "celular", "preco": 1149.5, "tela": "6.4 polegadas", "ram": "4 GB", "armazenamento": "64 GB", "processador": "Octa-core 2.0 GHz", "nota": 4.0 },
+  { "id": 5, "nome": "Celular Zeta A3", "categoria": "celular", "preco": 2499.0, "tela": "6.7 polegadas", "ram": "8 GB", "armazenamento": "256 GB", "processador": "Octa-core 2.8 GHz", "nota": 4.6 },
+  { "id": 6, "nome": "Celular Zeta A1", "categoria": "celular", "preco": 1599.9, "tela": "6.3 polegadas", "ram": "6 GB", "armazenamento": "128 GB", "processador": "Octa-core 2.2 GHz", "nota": 4.2 },
+  { "id": 7, "nome": "Celular Prisma Mini", "categoria": "celular", "preco": 749.0, "tela": "5.8 polegadas", "ram": "2 GB", "armazenamento": "32 GB", "processador": "Quad-core 1.6 GHz", "nota": 3.4 },
+  { "id": 8, "nome": "Celular Prisma Max", "categoria": "celular", "preco": 3199.0, "tela": "6.8 polegadas", "ram": "12 GB", "armazenamento": "512 GB", "processador": "Octa-core 3.0 GHz", "nota": 4.8 },
+  { "id": 9, "nome": "Notebook Pro 14", "categoria": "notebook", "preco": 4299.0, "tela": "14 polegadas", "ram": "8 GB", "armazenamento": "256 GB SSD", "processador": "Core 5 de 4 nucleos", "nota": 4.3 },
+  { "id": 10, "nome": "Notebook Pro 15", "categoria": "notebook", "preco": 4999.9, "tela": "15.6 polegadas", "ram": "16 GB", "armazenamento": "512 GB SSD", "processador": "Core 7 de 8 nucleos", "nota": 4.5 },
+  { "id": 11, "nome": "Notebook Basic 15", "categoria": "notebook", "preco": 2599.0, "tela": "15.6 polegadas", "ram": "4 GB", "armazenamento": "128 GB SSD", "processador": "Dual-core 2.1 GHz", "nota": 3.5 },
+  { "id": 12, "nome": "Notebook Air 13", "categoria": "notebook", "preco": 5799.0, "tela": "13.3 polegadas", "ram": "16 GB", "armazenamento": "512 GB SSD", "processador": "Core 7 de 8 nucleos", "nota": 4.7 },
+  { "id": 13, "nome": "Notebook Gamer G5", "categoria": "notebook", "preco": 7499.0, "tela": "15.6 polegadas", "ram": "16 GB", "armazenamento": "1 TB SSD", "processador": "Core 9 de 12 nucleos", "nota": 4.6 },
+  { "id": 14, "nome": "Notebook Gamer G3", "categoria": "notebook", "preco": 5999.0, "tela": "15.6 polegadas", "ram": "8 GB", "armazenamento": "512 GB SSD", "processador": "Core 7 de 8 nucleos", "nota": 4.2 },
+  { "id": 15, "nome": "Notebook Estudante 14", "categoria": "notebook", "preco": 1999.0, "tela": "14 polegadas", "ram": "4 GB", "armazenamento": "64 GB", "processador": "Dual-core 1.9 GHz", "nota": 3.3 },
+  { "id": 16, "nome": "Notebook Office 14", "categoria": "notebook", "preco": 3299.0, "tela": "14 polegadas", "ram": "8 GB", "armazenamento": "256 GB SSD", "processador": "Core 5 de 6 nucleos", "nota": 4.0 }
+]
