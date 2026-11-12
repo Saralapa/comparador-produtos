@@ -2,6 +2,7 @@ import { useState } from 'react'
 import produtos from './data/produtos.json'
 import ListaProdutos from './components/ListaProdutos'
 import TabelaComparacao from './components/TabelaComparacao'
+import Anuncio from './components/Anuncio'
 
 // componente principal do site
 function App() {
@@ -65,6 +66,8 @@ function App() {
           selecionados={selecionados}
           aoSelecionar={alternarSelecao}
         />
+
+        <Anuncio />
       </main>
 
       <footer className="rodape">
