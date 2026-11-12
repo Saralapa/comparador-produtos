@@ -101,3 +101,31 @@ body {
   padding: 8px;
   font-size: 16px;
 }
+
+.card-selecionado {
+  outline: 3px solid #1e5aa8;
+}
+
+.botao-comparar {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1e5aa8;
+  color: white;
+  cursor: pointer;
+}
+
+.card-selecionado .botao-comparar {
+  background-color: #999;
+}
+
+.info-selecao {
+  margin: 0 0 10px 0;
+}
+
+.aviso {
+  color: #b00020;
+  font-weight: bold;
+}

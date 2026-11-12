@@ -1,7 +1,7 @@
 // card de um produto na lista
-function CardProduto({ produto }) {
+function CardProduto({ produto, selecionado, aoSelecionar }) {
   return (
-    <div className="card">
+    <div className={selecionado ? 'card card-selecionado' : 'card'}>
       <div className="card-imagem">{produto.categoria}</div>
       <h3>{produto.nome}</h3>
       <p className="preco">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
@@ -12,6 +12,9 @@ function CardProduto({ produto }) {
         <li>Armazenamento: {produto.armazenamento}</li>
         <li>Nota: {produto.nota}</li>
       </ul>
+      <button className="botao-comparar" onClick={() => aoSelecionar(produto.id)}>
+        {selecionado ? 'Remover da comparação' : 'Comparar'}
+      </button>
     </div>
   )
 }

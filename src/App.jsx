@@ -6,6 +6,8 @@ import ListaProdutos from './components/ListaProdutos'
 function App() {
   const [busca, setBusca] = useState('')
   const [categoria, setCategoria] = useState('todos')
+  const [selecionados, setSelecionados] = useState([])
+  const [aviso, setAviso] = useState('')
 
   // filtra pelo nome e pela categoria escolhida
   const produtosFiltrados = produtos.filter((produto) => {
@@ -13,6 +15,19 @@ function App() {
     const categoriaOk = categoria === 'todos' || produto.categoria === categoria
     return nomeOk && categoriaOk
   })
+
+  // marca ou desmarca um produto para comparar (no maximo 3)
+  function alternarSelecao(id) {
+    if (selecionados.includes(id)) {
+      setSelecionados(selecionados.filter((item) => item !== id))
+      setAviso('')
+    } else if (selecionados.length >= 3) {
+      setAviso('Você só pode comparar até 3 produtos')
+    } else {
+      setSelecionados([...selecionados, id])
+      setAviso('')
+    }
+  }
 
   return (
     <div className="pagina">
@@ -36,7 +51,14 @@ function App() {
           </select>
         </div>
 
-        <ListaProdutos produtos={produtosFiltrados} />
+        <p className="info-selecao">Selecionados para comparar: {selecionados.length} de 3</p>
+        {aviso && <p className="aviso">{aviso}</p>}
+
+        <ListaProdutos
+          produtos={produtosFiltrados}
+          selecionados={selecionados}
+          aoSelecionar={alternarSelecao}
+        />
       </main>
 
       <footer className="rodape">
