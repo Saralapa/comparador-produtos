@@ -163,3 +163,9 @@ body {
   font-size: 12px;
   cursor: pointer;
 }
+
+.menor-preco {
+  background-color: #dff5e3;
+  color: #0a7a2f;
+  font-weight: bold;
+}
