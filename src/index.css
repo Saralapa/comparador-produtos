@@ -188,3 +188,24 @@ body {
 .anuncio p {
   margin: 5px 0 0 0;
 }
+
+/* ajustes para tela de celular */
+@media (max-width: 600px) {
+  .topo h1 {
+    font-size: 24px;
+  }
+
+  .conteudo {
+    padding: 10px;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  .comparacao th,
+  .comparacao td {
+    padding: 5px;
+    font-size: 13px;
+  }
+}
