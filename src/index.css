@@ -169,3 +169,22 @@ body {
   color: #0a7a2f;
   font-weight: bold;
 }
+
+.anuncio {
+  margin-top: 25px;
+  padding: 20px;
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+  background-color: #fafafa;
+  color: #777;
+  text-align: center;
+}
+
+.anuncio span {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.anuncio p {
+  margin: 5px 0 0 0;
+}
