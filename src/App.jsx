@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import produtos from './data/produtos.json'
 import ListaProdutos from './components/ListaProdutos'
+import TabelaComparacao from './components/TabelaComparacao'
 
 // componente principal do site
 function App() {
@@ -29,6 +30,9 @@ function App() {
     }
   }
 
+  // pega os produtos completos a partir dos ids escolhidos
+  const produtosComparar = produtos.filter((produto) => selecionados.includes(produto.id))
+
   return (
     <div className="pagina">
       <header className="topo">
@@ -53,6 +57,8 @@ function App() {
 
         <p className="info-selecao">Selecionados para comparar: {selecionados.length} de 3</p>
         {aviso && <p className="aviso">{aviso}</p>}
+
+        <TabelaComparacao produtos={produtosComparar} aoRemover={alternarSelecao} />
 
         <ListaProdutos
           produtos={produtosFiltrados}
