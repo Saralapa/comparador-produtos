@@ -101,3 +101,71 @@ body {
   padding: 8px;
   font-size: 16px;
 }
+
+.card-selecionado {
+  outline: 3px solid #1e5aa8;
+}
+
+.botao-comparar {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1e5aa8;
+  color: white;
+  cursor: pointer;
+}
+
+.card-selecionado .botao-comparar {
+  background-color: #999;
+}
+
+.info-selecao {
+  margin: 0 0 10px 0;
+}
+
+.aviso {
+  color: #b00020;
+  font-weight: bold;
+}
+
+.comparacao {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.comparacao h2 {
+  margin-top: 0;
+}
+
+.comparacao table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparacao th,
+.comparacao td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.comparacao th {
+  background-color: #eef3fa;
+}
+
+.botao-remover {
+  margin-top: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.menor-preco {
+  background-color: #dff5e3;
+  color: #0a7a2f;
+  font-weight: bold;
+}
