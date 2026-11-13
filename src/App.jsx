@@ -12,8 +12,10 @@ function App() {
   const [aviso, setAviso] = useState('')
 
   // filtra pelo nome e pela categoria escolhida
+  // trim para nao dar errado quando digita espaco sem querer
+  const textoBusca = busca.trim().toLowerCase()
   const produtosFiltrados = produtos.filter((produto) => {
-    const nomeOk = produto.nome.toLowerCase().includes(busca.toLowerCase())
+    const nomeOk = produto.nome.toLowerCase().includes(textoBusca)
     const categoriaOk = categoria === 'todos' || produto.categoria === categoria
     return nomeOk && categoriaOk
   })
