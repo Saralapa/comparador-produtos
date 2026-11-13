@@ -31,6 +31,12 @@ function App() {
     }
   }
 
+  // tira todos os produtos da comparacao de uma vez
+  function limparComparacao() {
+    setSelecionados([])
+    setAviso('')
+  }
+
   // pega os produtos completos a partir dos ids escolhidos
   const produtosComparar = produtos.filter((produto) => selecionados.includes(produto.id))
 
@@ -59,7 +65,11 @@ function App() {
         <p className="info-selecao">Selecionados para comparar: {selecionados.length} de 3</p>
         {aviso && <p className="aviso">{aviso}</p>}
 
-        <TabelaComparacao produtos={produtosComparar} aoRemover={alternarSelecao} />
+        <TabelaComparacao
+          produtos={produtosComparar}
+          aoRemover={alternarSelecao}
+          aoLimpar={limparComparacao}
+        />
 
         <ListaProdutos
           produtos={produtosFiltrados}

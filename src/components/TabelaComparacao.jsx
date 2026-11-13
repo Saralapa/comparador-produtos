@@ -1,5 +1,5 @@
 // tabela com os produtos escolhidos lado a lado
-function TabelaComparacao({ produtos, aoRemover }) {
+function TabelaComparacao({ produtos, aoRemover, aoLimpar }) {
   if (produtos.length === 0) {
     return null
   }
@@ -12,6 +12,9 @@ function TabelaComparacao({ produtos, aoRemover }) {
   return (
     <div className="comparacao">
       <h2>Comparação</h2>
+      <button className="botao-limpar" onClick={aoLimpar}>
+        Limpar comparação
+      </button>
       <table>
         <thead>
           <tr>

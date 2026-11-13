@@ -164,6 +164,11 @@ body {
   cursor: pointer;
 }
 
+.botao-limpar {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
 .menor-preco {
   background-color: #dff5e3;
   color: #0a7a2f;
