@@ -6,6 +6,8 @@ function TabelaComparacao({ produtos, aoRemover }) {
 
   // acha o menor preco para destacar na tabela
   const menorPreco = Math.min(...produtos.map((produto) => produto.preco))
+  // com 1 produto so nao tem com quem comparar, entao nao destaca
+  const temMaisDeUm = produtos.length > 1
 
   return (
     <div className="comparacao">
@@ -29,9 +31,12 @@ function TabelaComparacao({ produtos, aoRemover }) {
           <tr>
             <td>Preço</td>
             {produtos.map((produto) => (
-              <td key={produto.id} className={produto.preco === menorPreco ? 'menor-preco' : ''}>
+              <td
+                key={produto.id}
+                className={temMaisDeUm && produto.preco === menorPreco ? 'menor-preco' : ''}
+              >
                 R$ {produto.preco.toFixed(2).replace('.', ',')}
-                {produto.preco === menorPreco && produtos.length > 1 && <span> (mais barato)</span>}
+                {temMaisDeUm && produto.preco === menorPreco && <span> (mais barato)</span>}
               </td>
             ))}
           </tr>
