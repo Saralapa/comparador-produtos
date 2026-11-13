@@ -1,15 +1,20 @@
 // tabela com os produtos escolhidos lado a lado
-function TabelaComparacao({ produtos, aoRemover }) {
+function TabelaComparacao({ produtos, aoRemover, aoLimpar }) {
   if (produtos.length === 0) {
     return null
   }
 
   // acha o menor preco para destacar na tabela
   const menorPreco = Math.min(...produtos.map((produto) => produto.preco))
+  // com 1 produto so nao tem com quem comparar, entao nao destaca
+  const temMaisDeUm = produtos.length > 1
 
   return (
     <div className="comparacao">
       <h2>Comparação</h2>
+      <button className="botao-limpar" onClick={aoLimpar}>
+        Limpar comparação
+      </button>
       <table>
         <thead>
           <tr>
@@ -29,9 +34,12 @@ function TabelaComparacao({ produtos, aoRemover }) {
           <tr>
             <td>Preço</td>
             {produtos.map((produto) => (
-              <td key={produto.id} className={produto.preco === menorPreco ? 'menor-preco' : ''}>
+              <td
+                key={produto.id}
+                className={temMaisDeUm && produto.preco === menorPreco ? 'menor-preco' : ''}
+              >
                 R$ {produto.preco.toFixed(2).replace('.', ',')}
-                {produto.preco === menorPreco && produtos.length > 1 && <span> (mais barato)</span>}
+                {temMaisDeUm && produto.preco === menorPreco && <span> (mais barato)</span>}
               </td>
             ))}
           </tr>
