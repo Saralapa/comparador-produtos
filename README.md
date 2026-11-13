@@ -13,6 +13,10 @@ O que já funciona:
 - lista de celulares e notebooks (dados no arquivo `src/data/produtos.json`)
 - busca pelo nome do produto
 - filtro por categoria
+- comparar até 3 produtos lado a lado numa tabela
+- o mais barato fica destacado na comparação
+- botão para limpar a comparação
+- espaço de anúncio no fim da página
 
 ## Como rodar
 
