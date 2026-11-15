@@ -1,5 +1,7 @@
 # Comparador de Produtos
 
+![CI](https://github.com/Saralapa/comparador-produtos/actions/workflows/ci.yml/badge.svg)
+
 Site simples para comparar celulares e notebooks (preço e especificações).
 
 Trabalho final da disciplina de Integração Contínua - UTFPR
@@ -32,3 +34,10 @@ npm run lint           # eslint
 npm test               # roda os testes (vitest)
 npm run test:coverage  # testes com cobertura, falha se ficar abaixo de 70%
 ```
+
+## CI
+
+O CI roda no GitHub Actions (arquivo `.github/workflows/ci.yml`) em todo push e pull request na `main` e na `develop`.
+Ele instala as dependencias com `npm ci`, roda o lint, os testes com cobertura e o build.
+O build (`dist`) e o relatorio de cobertura ficam guardados como artefato na execucao.
+Se alguma etapa falhar o PR nao pode ser mesclado.
