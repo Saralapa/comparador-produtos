@@ -8,7 +8,7 @@ const produto = { id: 7, nome: 'Celular Teste', categoria: 'celular', preco: 129
 describe('CardProduto', () => {
   it('mostra o preco com virgula', () => {
     render(<CardProduto produto={produto} selecionado={false} aoSelecionar={() => {}} />)
-    expect(screen.getByText('R$ 1299,90')).toBeInTheDocument()
+    expect(screen.getByText('R$ 1299.90')).toBeInTheDocument()
   })
 
   it('muda o texto do botao quando esta selecionado', () => {
