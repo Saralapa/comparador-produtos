@@ -1,0 +1,36 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  # roda toda segunda de manha tambem
+  schedule:
+    - cron: '0 11 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  analise:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    strategy:
+      matrix:
+        language: [javascript-typescript, actions]
+
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v7
+
+      - name: Iniciar o CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Analisar
+        uses: github/codeql-action/analyze@v4
