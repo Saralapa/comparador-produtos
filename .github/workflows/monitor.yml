@@ -1,0 +1,50 @@
+name: Monitor
+
+# ve se o site ta no ar a cada 6 horas e depois de cada deploy
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Deploy]
+    types: [completed]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Acessar o site
+        id: site
+        run: |
+          # tenta 3 vezes antes de dar como fora do ar
+          for i in 1 2 3; do
+            status=$(curl -s -o pagina.html -w "%{http_code}" "${{ vars.SITE_URL }}" || true)
+            echo "tentativa $i: $status"
+            if [ "$status" = "200" ] && grep -q "Comparador de Produtos" pagina.html; then
+              echo "site no ar"
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "site fora do ar"
+          exit 1
+
+      - name: Abrir issue se o site caiu
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          link="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          texto="o monitor nao conseguiu acessar o site em $(date -u '+%d/%m/%Y %H:%M') UTC. ver o run: $link"
+          aberta=$(gh issue list --state open --search "Site fora do ar in:title" --json number --jq '.[0].number')
+          if [ -n "$aberta" ]; then
+            gh issue comment "$aberta" --body "$texto"
+          else
+            gh issue create --title "Site fora do ar" --body "$texto"
+          fi
