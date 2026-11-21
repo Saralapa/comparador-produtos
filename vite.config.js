@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // nome do repositorio, por causa do github pages
+  base: '/comparador-produtos/',
   // configuracao dos testes (vitest)
   test: {
     environment: 'jsdom',
