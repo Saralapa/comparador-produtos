@@ -8,6 +8,7 @@ COPY . .
 RUN npm run build -- --base=/
 
 # depois so copia o dist pro nginx
-FROM nginx:alpine
+# essa imagem do nginx nao roda como root (o sonar reclamou), por isso a porta e 8080
+FROM nginxinc/nginx-unprivileged:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8080
