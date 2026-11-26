@@ -9,9 +9,9 @@ function nomesNaTela() {
 }
 
 describe('busca e filtro', () => {
-  it('mostra os 16 produtos no comeco', () => {
+  it('mostra todos os produtos no comeco', () => {
     render(<App />)
-    expect(nomesNaTela()).toHaveLength(16)
+    expect(nomesNaTela()).toHaveLength(20)
   })
 
   it('busca pelo nome', async () => {
@@ -30,7 +30,7 @@ describe('busca e filtro', () => {
     render(<App />)
     await userEvent.selectOptions(screen.getByLabelText('Categoria'), 'notebook')
     const nomes = nomesNaTela()
-    expect(nomes).toHaveLength(8)
+    expect(nomes).toHaveLength(9)
     expect(nomes.every((nome) => nome.startsWith('Notebook'))).toBe(true)
   })
 
@@ -45,7 +45,7 @@ describe('busca e filtro', () => {
     render(<App />)
     await userEvent.selectOptions(screen.getByLabelText('Ordenar'), 'menor-preco')
     const nomes = nomesNaTela()
-    expect(nomes[0]).toBe('Celular Prisma Mini')
+    expect(nomes[0]).toBe('Celular Lite 2')
     expect(nomes[nomes.length - 1]).toBe('Notebook Gamer G5')
   })
 

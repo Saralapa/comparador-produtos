@@ -3,8 +3,8 @@ import produtos from './data/produtos.json'
 
 // confere se ninguem errou alguma coisa no json dos produtos
 describe('produtos.json', () => {
-  it('tem 16 produtos', () => {
-    expect(produtos).toHaveLength(16)
+  it('tem 20 produtos', () => {
+    expect(produtos).toHaveLength(20)
   })
 
   it('nao tem id repetido', () => {
