@@ -55,4 +55,11 @@ describe('busca e filtro', () => {
     await userEvent.selectOptions(screen.getByLabelText('Ordenar'), 'maior-preco')
     expect(nomesNaTela()[0]).toBe('Celular Prisma Max')
   })
+
+  it('avisa quando nao acha nenhum produto', async () => {
+    render(<App />)
+    await userEvent.type(screen.getByPlaceholderText('Buscar pelo nome...'), 'tablet')
+    expect(screen.getByText('Nenhum produto encontrado')).toBeInTheDocument()
+    expect(screen.queryAllByRole('heading', { level: 3 })).toHaveLength(0)
+  })
 })

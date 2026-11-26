@@ -112,6 +112,12 @@ body {
   font-size: 16px;
 }
 
+.nenhum-produto {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+}
+
 .card-selecionado {
   outline: 3px solid #1e5aa8;
 }
