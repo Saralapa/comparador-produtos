@@ -8,6 +8,7 @@ import Anuncio from './components/Anuncio'
 function App() {
   const [busca, setBusca] = useState('')
   const [categoria, setCategoria] = useState('todos')
+  const [ordem, setOrdem] = useState('padrao')
   const [selecionados, setSelecionados] = useState([])
   const [aviso, setAviso] = useState('')
 
@@ -19,6 +20,12 @@ function App() {
     const categoriaOk = categoria === 'todos' || produto.categoria === categoria
     return nomeOk && categoriaOk
   })
+
+  if (ordem === 'menor-preco') {
+    produtosFiltrados.sort((a, b) => a.preco - b.preco)
+  } else if (ordem === 'maior-preco') {
+    produtosFiltrados.sort((a, b) => b.preco - a.preco)
+  }
 
   // marca ou desmarca um produto para comparar (no maximo 3)
   function alternarSelecao(id) {
@@ -66,6 +73,14 @@ function App() {
               <option value="todos">Todos</option>
               <option value="celular">Celulares</option>
               <option value="notebook">Notebooks</option>
+            </select>
+          </label>
+          <label>
+            Ordenar
+            <select value={ordem} onChange={(e) => setOrdem(e.target.value)}>
+              <option value="padrao">Padrão</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="maior-preco">Maior preço</option>
             </select>
           </label>
         </div>

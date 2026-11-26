@@ -40,4 +40,19 @@ describe('busca e filtro', () => {
     await userEvent.type(screen.getByPlaceholderText('Buscar pelo nome...'), 'pro')
     expect(nomesNaTela()).toEqual(['Celular X12 Pro'])
   })
+
+  it('ordena pelo menor preco', async () => {
+    render(<App />)
+    await userEvent.selectOptions(screen.getByLabelText('Ordenar'), 'menor-preco')
+    const nomes = nomesNaTela()
+    expect(nomes[0]).toBe('Celular Prisma Mini')
+    expect(nomes[nomes.length - 1]).toBe('Notebook Gamer G5')
+  })
+
+  it('ordena pelo maior preco so nos celulares', async () => {
+    render(<App />)
+    await userEvent.selectOptions(screen.getByLabelText('Categoria'), 'celular')
+    await userEvent.selectOptions(screen.getByLabelText('Ordenar'), 'maior-preco')
+    expect(nomesNaTela()[0]).toBe('Celular Prisma Max')
+  })
 })
