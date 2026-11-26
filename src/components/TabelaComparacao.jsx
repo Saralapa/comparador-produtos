@@ -1,3 +1,5 @@
+import formatarPreco from '../formatarPreco'
+
 // tabela com os produtos escolhidos lado a lado
 function TabelaComparacao({ produtos, aoRemover, aoLimpar }) {
   if (produtos.length === 0) {
@@ -38,7 +40,7 @@ function TabelaComparacao({ produtos, aoRemover, aoLimpar }) {
                 key={produto.id}
                 className={temMaisDeUm && produto.preco === menorPreco ? 'menor-preco' : ''}
               >
-                R$ {produto.preco.toFixed(2).replace('.', ',')}
+                {formatarPreco(produto.preco)}
                 {temMaisDeUm && produto.preco === menorPreco && <span> (mais barato)</span>}
               </td>
             ))}

@@ -6,9 +6,9 @@ import CardProduto from './CardProduto'
 const produto = { id: 7, nome: 'Celular Teste', categoria: 'celular', preco: 1299.9, tela: '6 polegadas', processador: 'x', ram: '4 GB', armazenamento: '64 GB', nota: 4 }
 
 describe('CardProduto', () => {
-  it('mostra o preco com virgula', () => {
+  it('mostra o preco formatado', () => {
     render(<CardProduto produto={produto} selecionado={false} aoSelecionar={() => {}} />)
-    expect(screen.getByText('R$ 1299,90')).toBeInTheDocument()
+    expect(screen.getByText('R$ 1.299,90')).toBeInTheDocument()
   })
 
   it('muda o texto do botao quando esta selecionado', () => {

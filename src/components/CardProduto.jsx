@@ -1,10 +1,12 @@
+import formatarPreco from '../formatarPreco'
+
 // card de um produto na lista
 function CardProduto({ produto, selecionado, aoSelecionar }) {
   return (
     <div className={selecionado ? 'card card-selecionado' : 'card'}>
       <div className="card-imagem">{produto.categoria}</div>
       <h3>{produto.nome}</h3>
-      <p className="preco">R$ {produto.preco.toFixed(2).replace('.', ',')}</p>
+      <p className="preco">{formatarPreco(produto.preco)}</p>
       <ul>
         <li>Tela: {produto.tela}</li>
         <li>Processador: {produto.processador}</li>
