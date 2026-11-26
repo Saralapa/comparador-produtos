@@ -1,6 +1,5 @@
 import formatarPreco from '../formatarPreco'
 
-// card de um produto na lista
 function CardProduto({ produto, selecionado, aoSelecionar }) {
   return (
     <div className={selecionado ? 'card card-selecionado' : 'card'}>

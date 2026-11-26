@@ -4,7 +4,6 @@ import ListaProdutos from './components/ListaProdutos'
 import TabelaComparacao from './components/TabelaComparacao'
 import Anuncio from './components/Anuncio'
 
-// componente principal do site
 function App() {
   const [busca, setBusca] = useState('')
   const [categoria, setCategoria] = useState('todos')
@@ -13,7 +12,6 @@ function App() {
   const [aviso, setAviso] = useState('')
 
   // filtra pelo nome e pela categoria escolhida
-  // trim para nao dar errado quando digita espaco sem querer
   const textoBusca = busca.trim().toLowerCase()
   const produtosFiltrados = produtos.filter((produto) => {
     const nomeOk = produto.nome.toLowerCase().includes(textoBusca)
@@ -40,13 +38,11 @@ function App() {
     }
   }
 
-  // tira todos os produtos da comparacao de uma vez
   function limparComparacao() {
     setSelecionados([])
     setAviso('')
   }
 
-  // pega os produtos completos a partir dos ids escolhidos
   const produtosComparar = produtos.filter((produto) => selecionados.includes(produto.id))
 
   return (

@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [react()],
   // nome do repositorio, por causa do github pages
   base: '/comparador-produtos/',
-  // configuracao dos testes (vitest)
   test: {
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',

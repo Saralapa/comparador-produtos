@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import produtos from './data/produtos.json'
 
-// confere se ninguem errou alguma coisa no json dos produtos
 describe('produtos.json', () => {
   it('tem 20 produtos', () => {
     expect(produtos).toHaveLength(20)
