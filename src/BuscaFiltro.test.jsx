@@ -28,7 +28,7 @@ describe('busca e filtro', () => {
 
   it('filtra so os notebooks', async () => {
     render(<App />)
-    await userEvent.selectOptions(screen.getByRole('combobox'), 'notebook')
+    await userEvent.selectOptions(screen.getByLabelText('Categoria'), 'notebook')
     const nomes = nomesNaTela()
     expect(nomes).toHaveLength(8)
     expect(nomes.every((nome) => nome.startsWith('Notebook'))).toBe(true)
@@ -36,7 +36,7 @@ describe('busca e filtro', () => {
 
   it('junta busca e categoria', async () => {
     render(<App />)
-    await userEvent.selectOptions(screen.getByRole('combobox'), 'celular')
+    await userEvent.selectOptions(screen.getByLabelText('Categoria'), 'celular')
     await userEvent.type(screen.getByPlaceholderText('Buscar pelo nome...'), 'pro')
     expect(nomesNaTela()).toEqual(['Celular X12 Pro'])
   })

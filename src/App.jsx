@@ -51,17 +51,23 @@ function App() {
 
       <main className="conteudo">
         <div className="filtros">
-          <input
-            type="text"
-            placeholder="Buscar pelo nome..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-          />
-          <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-            <option value="todos">Todos</option>
-            <option value="celular">Celulares</option>
-            <option value="notebook">Notebooks</option>
-          </select>
+          <label className="campo-busca">
+            Buscar
+            <input
+              type="text"
+              placeholder="Buscar pelo nome..."
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+            />
+          </label>
+          <label>
+            Categoria
+            <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+              <option value="todos">Todos</option>
+              <option value="celular">Celulares</option>
+              <option value="notebook">Notebooks</option>
+            </select>
+          </label>
         </div>
 
         <p className="info-selecao">Selecionados para comparar: {selecionados.length} de 3</p>
