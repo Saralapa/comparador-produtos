@@ -13,12 +13,12 @@ export default defineConfig({
       provider: 'v8',
       include: ['src/**/*.{js,jsx}'],
       exclude: ['src/main.jsx', 'src/setupTests.js', 'src/**/*.test.{js,jsx}'],
-      // se a cobertura ficar abaixo de 70% o comando falha
+      // se a cobertura ficar abaixo de 90% o comando falha
       thresholds: {
-        lines: 70,
-        functions: 70,
-        branches: 70,
-        statements: 70,
+        lines: 90,
+        functions: 90,
+        branches: 90,
+        statements: 90,
       },
     },
   },
