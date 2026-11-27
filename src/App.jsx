@@ -4,21 +4,26 @@ import ListaProdutos from './components/ListaProdutos'
 import TabelaComparacao from './components/TabelaComparacao'
 import Anuncio from './components/Anuncio'
 
-// componente principal do site
 function App() {
   const [busca, setBusca] = useState('')
   const [categoria, setCategoria] = useState('todos')
+  const [ordem, setOrdem] = useState('padrao')
   const [selecionados, setSelecionados] = useState([])
   const [aviso, setAviso] = useState('')
 
   // filtra pelo nome e pela categoria escolhida
-  // trim para nao dar errado quando digita espaco sem querer
   const textoBusca = busca.trim().toLowerCase()
   const produtosFiltrados = produtos.filter((produto) => {
     const nomeOk = produto.nome.toLowerCase().includes(textoBusca)
     const categoriaOk = categoria === 'todos' || produto.categoria === categoria
     return nomeOk && categoriaOk
   })
+
+  if (ordem === 'menor-preco') {
+    produtosFiltrados.sort((a, b) => a.preco - b.preco)
+  } else if (ordem === 'maior-preco') {
+    produtosFiltrados.sort((a, b) => b.preco - a.preco)
+  }
 
   // marca ou desmarca um produto para comparar (no maximo 3)
   function alternarSelecao(id) {
@@ -33,13 +38,11 @@ function App() {
     }
   }
 
-  // tira todos os produtos da comparacao de uma vez
   function limparComparacao() {
     setSelecionados([])
     setAviso('')
   }
 
-  // pega os produtos completos a partir dos ids escolhidos
   const produtosComparar = produtos.filter((produto) => selecionados.includes(produto.id))
 
   return (
@@ -51,17 +54,31 @@ function App() {
 
       <main className="conteudo">
         <div className="filtros">
-          <input
-            type="text"
-            placeholder="Buscar pelo nome..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-          />
-          <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-            <option value="todos">Todos</option>
-            <option value="celular">Celulares</option>
-            <option value="notebook">Notebooks</option>
-          </select>
+          <label className="campo-busca">
+            Buscar
+            <input
+              type="text"
+              placeholder="Buscar pelo nome..."
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+            />
+          </label>
+          <label>
+            Categoria
+            <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+              <option value="todos">Todos</option>
+              <option value="celular">Celulares</option>
+              <option value="notebook">Notebooks</option>
+            </select>
+          </label>
+          <label>
+            Ordenar
+            <select value={ordem} onChange={(e) => setOrdem(e.target.value)}>
+              <option value="padrao">Padrão</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="maior-preco">Maior preço</option>
+            </select>
+          </label>
         </div>
 
         <p className="info-selecao">Selecionados para comparar: {selecionados.length} de 3</p>

@@ -3,13 +3,32 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import TabelaComparacao from './TabelaComparacao'
 
-// produtos de teste (nao precisa ser igual ao json)
-const barato = { id: 1, nome: 'Teste Barato', preco: 500, tela: '6', processador: 'a', ram: '2 GB', armazenamento: '32 GB', nota: 3 }
-const caro = { id: 2, nome: 'Teste Caro', preco: 900, tela: '6', processador: 'b', ram: '4 GB', armazenamento: '64 GB', nota: 4 }
+const barato = {
+  id: 1,
+  nome: 'Teste Barato',
+  preco: 500,
+  tela: '6',
+  processador: 'a',
+  ram: '2 GB',
+  armazenamento: '32 GB',
+  nota: 3,
+}
+const caro = {
+  id: 2,
+  nome: 'Teste Caro',
+  preco: 900,
+  tela: '6',
+  processador: 'b',
+  ram: '4 GB',
+  armazenamento: '64 GB',
+  nota: 4,
+}
 
 describe('TabelaComparacao', () => {
   it('nao mostra nada se a lista estiver vazia', () => {
-    const { container } = render(<TabelaComparacao produtos={[]} aoRemover={() => {}} aoLimpar={() => {}} />)
+    const { container } = render(
+      <TabelaComparacao produtos={[]} aoRemover={() => {}} aoLimpar={() => {}} />,
+    )
     expect(container).toBeEmptyDOMElement()
   })
 

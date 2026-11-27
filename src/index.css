@@ -91,8 +91,18 @@ body {
   margin-bottom: 20px;
 }
 
-.filtros input {
+.filtros label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.filtros .campo-busca {
   flex: 1;
+}
+
+.filtros input {
   padding: 8px;
   font-size: 16px;
 }
@@ -100,6 +110,12 @@ body {
 .filtros select {
   padding: 8px;
   font-size: 16px;
+}
+
+.nenhum-produto {
+  text-align: center;
+  color: #666;
+  padding: 20px;
 }
 
 .card-selecionado {

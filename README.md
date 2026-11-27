@@ -32,7 +32,7 @@ npm run dev
 ```bash
 npm run lint           # eslint
 npm test               # roda os testes (vitest)
-npm run test:coverage  # testes com cobertura, falha se ficar abaixo de 70%
+npm run test:coverage  # testes com cobertura, falha se ficar abaixo de 90%
 ```
 
 ## CI

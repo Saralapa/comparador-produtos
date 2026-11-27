@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
 
-// clica no botao "Comparar" dos primeiros produtos da lista
 async function selecionar(quantidade) {
   for (let i = 0; i < quantidade; i++) {
     // sempre pega o primeiro, porque o que ja foi escolhido muda o texto do botao

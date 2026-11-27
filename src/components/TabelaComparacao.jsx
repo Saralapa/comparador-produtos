@@ -1,10 +1,10 @@
-// tabela com os produtos escolhidos lado a lado
+import formatarPreco from '../formatarPreco'
+
 function TabelaComparacao({ produtos, aoRemover, aoLimpar }) {
   if (produtos.length === 0) {
     return null
   }
 
-  // acha o menor preco para destacar na tabela
   const menorPreco = Math.min(...produtos.map((produto) => produto.preco))
   // com 1 produto so nao tem com quem comparar, entao nao destaca
   const temMaisDeUm = produtos.length > 1
@@ -38,7 +38,7 @@ function TabelaComparacao({ produtos, aoRemover, aoLimpar }) {
                 key={produto.id}
                 className={temMaisDeUm && produto.preco === menorPreco ? 'menor-preco' : ''}
               >
-                R$ {produto.preco.toFixed(2).replace('.', ',')}
+                {formatarPreco(produto.preco)}
                 {temMaisDeUm && produto.preco === menorPreco && <span> (mais barato)</span>}
               </td>
             ))}
