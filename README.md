@@ -1,6 +1,10 @@
 # Comparador de Produtos
 
 ![CI](https://github.com/Saralapa/comparador-produtos/actions/workflows/ci.yml/badge.svg)
+![CodeQL](https://github.com/Saralapa/comparador-produtos/actions/workflows/codeql.yml/badge.svg)
+![Deploy](https://github.com/Saralapa/comparador-produtos/actions/workflows/deploy.yml/badge.svg)
+![Monitor](https://github.com/Saralapa/comparador-produtos/actions/workflows/monitor.yml/badge.svg)
+![Docker](https://github.com/Saralapa/comparador-produtos/actions/workflows/docker.yml/badge.svg)
 
 Trabalho final da disciplina de Integração Contínua - UTFPR
 
@@ -83,24 +87,76 @@ Os PRs do Dependabot também entram pela `develop`.
 
 Versões são marcadas com tag na `main` (vX.Y.Z). A `v0.1.0` foi o primeiro deploy no GitHub Pages.
 
+## 7. Pipeline CI/CD
+
+O pipeline é feito no GitHub Actions. Cada workflow fica em `.github/workflows`:
+
+- `ci.yml`: roda em todo push e pull request na `main` e na `develop`. É o principal.
+- `codeql.yml`: análise de segurança do código, nos mesmos eventos do CI e toda segunda de manhã.
+- `deploy.yml`: roda quando entra coisa na `main` e publica o site.
+- `monitor.yml`: verifica se o site está no ar (seção 13).
+- `docker.yml`: monta a imagem Docker (seção 14).
+
+Fluxo geral:
+
+```mermaid
+flowchart LR
+  A[push / PR] --> B[npm ci] --> C[npm audit] --> D[lint e prettier] --> E[testes e cobertura] --> F[build] --> G[deploy no Pages] --> H[monitor]
+```
+
+Etapas do `ci.yml`:
+
+1. baixa o código e instala o Node 24
+2. instala as dependências com `npm ci`
+3. `npm audit` (dependência com falha de segurança alta ou crítica)
+4. lint
+5. confere a formatação com o Prettier
+6. testes com cobertura
+7. build
+8. guarda o `dist` e o relatório de cobertura como artefatos
+
+Tem também um job `gitleaks` que roda junto (seção 10).
+
+Se qualquer passo falhar o job para ali e fica vermelho. Como a `main` e a `develop` exigem os checks, o PR fica bloqueado e não dá pra mesclar. Testei isso no PR #9, onde coloquei um teste errado: a execução falhou e o botão de merge ficou bloqueado.
+
+Para ver uma execução: aba Actions do repositório, escolher o workflow e clicar na execução. Dá pra abrir cada passo e ver o log. No PR os checks aparecem embaixo, com link para a execução.
+
+## 8. Testes automatizados
+
+Os testes usam Vitest com Testing Library (o navegador é simulado com jsdom). São 31 testes em 7 arquivos, por exemplo:
+
+- busca pelo nome, filtro por categoria e ordenar por preço
+- mensagem de nenhum produto encontrado
+- selecionar produtos, limite de 3 e limpar a comparação
+- destaque do mais barato na tabela
+- formatação do preço
+- dados do JSON (todos com id diferente, preço maior que zero etc.)
+
+A cobertura é medida com o coverage v8. No `vite.config.js` tem um mínimo de 90% (linhas, funções, branches e statements). Se ficar abaixo disso o `npm run test:coverage` falha e o CI para. Hoje está em 100%.
+
+```bash
+npm test
+npm run test:coverage
+```
+
+O relatório de cobertura em HTML fica como artefato (`cobertura`) em cada execução do CI.
+
+## 9. Qualidade de código
+
+- ESLint: usa as regras recomendadas e as do React Hooks. O script `lint` roda com `--max-warnings 0`, então até aviso faz o CI falhar.
+- Prettier: deixa todos os arquivos com a mesma formatação, assim o diff dos PRs não fica cheio de mudança só de espaço. No CI roda o `format:check`.
+- SonarCloud: faz análise estática em todo push e PR, procurando bug, code smell e problema de segurança. O quality gate dele é um check obrigatório na `main` e na `develop`. Ele já reprovou PRs de verdade, por exemplo por causa de action sem versão fixa e do nginx rodando como root, e eu corrigi antes de mesclar.
+
+O SonarCloud está com análise automática (configurada no site dele, sem token no repositório). Por isso a cobertura não aparece lá, ela é cobrada no CI pelo Vitest.
+
+```bash
+npm run lint
+npm run format:check
+```
+
 ## Como rodar
 
 ```bash
 npm install
 npm run dev
 ```
-
-## Testes e lint
-
-```bash
-npm run lint           # eslint
-npm test               # roda os testes (vitest)
-npm run test:coverage  # testes com cobertura, falha se ficar abaixo de 90%
-```
-
-## CI
-
-O CI roda no GitHub Actions (arquivo `.github/workflows/ci.yml`) em todo push e pull request na `main` e na `develop`.
-Ele instala as dependencias com `npm ci`, roda o lint, os testes com cobertura e o build.
-O build (`dist`) e o relatorio de cobertura ficam guardados como artefato na execucao.
-Se alguma etapa falhar o PR nao pode ser mesclado.
