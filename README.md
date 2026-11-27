@@ -154,6 +154,31 @@ npm run lint
 npm run format:check
 ```
 
+## 10. Segurança
+
+O que tem no pipeline e por que escolhi cada um:
+
+SAST: CodeQL (`codeql.yml`). Ele analisa o código JavaScript e também os próprios workflows. Escolhi porque é do próprio GitHub, é grátis para repositório público e os alertas aparecem direto na aba Security. O check `analise (javascript-typescript)` é obrigatório para mesclar. O SonarCloud (seção 9) também aponta problemas de segurança.
+
+Análise de dependências:
+
+- `npm audit --audit-level=high` no CI e no deploy. Se alguma dependência tiver vulnerabilidade alta ou crítica o pipeline para.
+- Dependabot (`.github/dependabot.yml`): toda semana abre PR na `develop` para atualizar os pacotes do npm e as versões das actions. Os alertas e as atualizações de segurança do Dependabot também estão ligados no repositório. Vários PRs dele já foram mesclados (por exemplo o #25 e o #26).
+
+Secret scanning: o gitleaks roda no CI e no deploy olhando todo o histórico de commits, procurando senha ou token que tenha ido sem querer. Além dele deixei ligado o secret scanning do GitHub com push protection, que bloqueia o push se tiver um token conhecido. Usei os dois porque o gitleaks aparece como check no PR e o do GitHub barra antes do código chegar no repositório.
+
+Cadeia de suprimentos:
+
+- `npm ci` instala exatamente as versões do `package-lock.json`, e com `--ignore-scripts` não roda script de instalação dos pacotes (foi o SonarCloud que apontou isso)
+- as actions de terceiros (gitleaks e as do docker) estão fixadas pelo SHA do commit, porque uma tag pode ser trocada pelo dono. O Dependabot atualiza esses SHAs
+- os workflows começam com `permissions: contents: read` e só o job que precisa recebe mais permissão (CodeQL, deploy, monitor e docker)
+
+Secrets e variáveis: não tem nenhuma senha ou token no código.
+
+- `GITHUB_TOKEN`: o próprio Actions cria em cada execução. É usado pelo gitleaks, pelo monitor para abrir issue e pelo docker para publicar no ghcr.
+- `vars.SITE_URL`: variável do repositório (Settings > Secrets and variables > Actions) com o endereço do site, usada pelo monitor.
+- O SonarCloud usa análise automática, então não precisa de `SONAR_TOKEN`. Se um dia passar a rodar pelo CI, o token vai como secret, nunca no arquivo.
+
 ## Como rodar
 
 ```bash
